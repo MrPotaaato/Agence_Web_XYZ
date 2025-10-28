@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediQuick – Consultations et Traitements en Ligne Rapides</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #065f46;
+            --secondary-color: #f0fdf4;
+            --accent-color: #10b981;
+            --accent-dark: #059669;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --light-color: #ffffff;
+            --dark-color: #0f172a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border: 1px solid #e5e7eb;
+            --gradient: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--gradient);
+            color: var(--light-color);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .services {
+            margin: 4rem 0;
+        }
+
+        .services h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card .price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin: 1rem 0;
+        }
+
+        .testimonials {
+            background-color: var(--secondary-color);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .cta-section {
+            background: var(--gradient);
+            color: var(--light-color);
+            padding: 3rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .ctf-notice {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+        }
+
+        .disclaimer {
+            background-color: var(--light-color);
+            color: var(--text-light);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--accent-color);
+            background-color: #f0fdf4;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MediQuick</h1>
+            <p>Consultations médicales et traitements en ligne, rapides et sans attente</p>
+            <a href="#" class="btn btn-primary">Commencer maintenant</a>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Consultations</a></li>
+            <li><a href="#">Traitements</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="disclaimer">
+            <i class="fas fa-exclamation-circle"></i> MediQuick propose des consultations et traitements en ligne pour votre confort. Nos services ne remplacent pas une consultation physique en cas d'urgence.
+        </div>
+
+        <section class="features">
+            <div class="feature">
+                <i class="fas fa-clock"></i>
+                <h3>Consultations 24/7</h3>
+                <p>Accédez à nos médecins à tout moment, sans rendez-vous ni attente.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-prescription-bottle"></i>
+                <h3>Ordonnances rapides</h3>
+                <p>Recevez vos ordonnances en ligne en quelques minutes, sans vous déplacer.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-shield-virus"></i>
+                <h3>Confidentialité totale</h3>
+                <p>Vos données sont protégées et vos consultations restent strictement confidentielles.</p>
+            </div>
+        </section>
+
+        <section class="services">
+            <h2>Nos services médicaux en ligne</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Consultation générale</h3>
+                    <p>Parlez à un médecin généraliste pour tout type de symptôme ou de question médicale.</p>
+                    <p class="price">29,99 €</p>
+                    <a href="#" class="btn btn-primary">Réserver maintenant</a>
+                </div>
+                <div class="service-card">
+                    <h3>Renouvellement d'ordonnance</h3>
+                    <p>Renouvelez vos ordonnances sans vous déplacer, rapidement et en toute sécurité.</p>
+                    <p class="price">19,99 €</p>
+                    <a href="#" class="btn btn-primary">Commencer</a>
+                </div>
+                <div class="service-card">
+                    <h3>Traitements spécialisés</h3>
+                    <p>Accédez à des traitements spécifiques, adaptés à vos besoins, avec suivi personnalisé.</p>
+                    <p class="price">49,99 €</p>
+                    <a href="#" class="btn btn-primary">En savoir plus</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Témoignages de nos patients</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"MediQuick m'a sauvé la vie ! J'ai pu consulter un médecin en pleine nuit et recevoir mon traitement le lendemain. Rapide et efficace !"</p>
+                    <div class="testimonial-author">- Sophie, 32 ans</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Plus besoin d'attendre des heures chez le médecin. Avec MediQuick, tout se fait en ligne, simplement et rapidement."</p>
+                    <div class="testimonial-author">- Thomas, 45 ans</div>
+                </div>
+                <div class="testimonial">
+                    <p>"J'ai renouvelé mon ordonnance en 10 minutes, sans me déplacer. Un service incroyable et très pratique !"</p>
+                    <div class="testimonial-author">- Clara, 28 ans</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Besoin d'une consultation ou d'un traitement rapidement ?</h2>
+            <p>Inscrivez-vous dès maintenant et accédez à nos services médicaux en ligne, où que vous soyez.</p>
+            <a href="#" class="btn btn-secondary">Créer un compte</a>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MediQuick</h3>
+                    <p>MediQuick est une plateforme médicale en ligne qui vous permet de consulter des médecins et de recevoir des traitements rapidement, sans vous déplacer.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Consultations</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Santé, Paris, France</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@mediquick.fr</p>
+                </div>
+            </div>
+
+            <div class="ctf-notice">
+                <p>Site fictif utilisé dans le cadre d'un CTF d'OSINT</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

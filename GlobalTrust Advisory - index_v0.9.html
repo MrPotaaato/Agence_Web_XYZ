@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalTrust Advisory - Solutions Patrimoniales Internationales</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            background: #fafafa;
+        }
+
+        .nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: #d4af37;
+            letter-spacing: 3px;
+            font-family: 'Garamond', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 300;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            top: -400px;
+            right: -400px;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: 2px;
+        }
+
+        .gold-text {
+            color: #d4af37;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-bottom: 3rem;
+            max-width: 650px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #d4af37;
+            color: #1a1a1a;
+            padding: 1.2rem 3.5rem;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            border: 2px solid #d4af37;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: #d4af37;
+        }
+
+        .section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            color: #1a1a1a;
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.15rem;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border-left: 3px solid #d4af37;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .trust-section {
+            background: #1a1a1a;
+            padding: 5rem 5%;
+            color: #fff;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .trust-item h3 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            color: #d4af37;
+        }
+
+        .trust-item p {
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        .confidentiality-section {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            padding: 6rem 5%;
+            color: #fff;
+        }
+
+        .confidentiality-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .confidentiality-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .confidentiality-content p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #b0b0b0;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .feature-item h4 {
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            background: #0d0d0d;
+            color: #808080;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-disclaimer {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script>
+        // API Configuration for internal services
+        const API_CONFIG = {
+            endpoint: 'https://site-pour-de-faux.swagger.io/',
+            token: '766F7573-2061-7665-7A20-74726F7576E9',
+            version: 'v1.0'
+        };
+
+        // Initialize API connection
+        function initAPIConnection() {
+            // Connection logic would go here
+            console.log('API Ready');
+        }
+
+        document.addEventListener('DOMContentLoaded', initAPIConnection);
+    </script>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">GLOBALTRUST</div>
+            <ul class="nav-links">
+                <li><a href="#services">SERVICES</a></li>
+                <li><a href="#expertise">EXPERTISE</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Votre patrimoine mérite<br>la plus grande <span class="gold-text">discrétion</span></h1>
+            <p>Solutions patrimoniales internationales pour entrepreneurs et investisseurs exigeants. Optimisation fiscale légale et structuration offshore confidentielle.</p>
+            <a href="#contact" class="cta-button">Consultation privée</a>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <h2 class="section-title">Nos Services Exclusifs</h2>
+        <p class="section-subtitle">Une approche sur mesure pour protéger et optimiser votre patrimoine à l'international</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏛️</div>
+                <h3>Structuration Offshore</h3>
+                <p>Création de structures juridiques internationales adaptées à vos besoins : sociétés holdings, trusts, fondations privées dans les juridictions les plus favorables.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3>Optimisation Fiscale</h3>
+                <p>Stratégies d'optimisation patrimoniale internationale pour minimiser votre charge fiscale dans le respect des cadres légaux disponibles.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔒</div>
+                <h3>Confidentialité Maximale</h3>
+                <p>Protection de votre vie privée grâce à des structures anonymes et des juridictions offrant les plus hauts standards de confidentialité.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>Comptes Bancaires Offshore</h3>
+                <p>Ouverture de comptes dans des institutions bancaires internationales réputées, avec gestion multi-devises et services premium.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📋</div>
+                <h3>Planification Successorale</h3>
+                <p>Transmission patrimoniale optimisée à l'international avec des structures protectrices pour vos héritiers et bénéficiaires.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⚖️</div>
+                <h3>Conseil Juridique International</h3>
+                <p>Expertise juridique pointue sur les législations fiscales et patrimoniales de multiples juridictions à travers le monde.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-section">
+        <div class="trust-grid">
+            <div class="trust-item">
+                <h3>25+</h3>
+                <p>ANNÉES D'EXPÉRIENCE</p>
+            </div>
+            <div class="trust-item">
+                <h3>50+</h3>
+                <p>JURIDICTIONS</p>
+            </div>
+            <div class="trust-item">
+                <h3>100%</h3>
+                <p>CONFIDENTIEL</p>
+            </div>
+            <div class="trust-item">
+                <h3>24/7</h3>
+                <p>SUPPORT DÉDIÉ</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="confidentiality-section">
+        <div class="confidentiality-content">
+            <h2>La Discrétion Avant Tout</h2>
+            <p>
+                Dans un monde où la transparence financ

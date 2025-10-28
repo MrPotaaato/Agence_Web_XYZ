@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteRecrut – Recrutement Exclusif pour les Talents d'Exception</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #f8fafc;
+            --accent-color: #3b82f6;
+            --accent-dark: #1d4ed8;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --light-color: #ffffff;
+            --dark-color: #111827;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border: 1px solid #e5e7eb;
+            --gradient: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--gradient);
+            color: var(--light-color);
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 2rem;
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat p {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .features {
+            margin: 4rem 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .jobs {
+            margin: 4rem 0;
+        }
+
+        .jobs h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .job-card {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .job-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .job-card .salary {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .testimonials {
+            background-color: var(--secondary-color);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .cta-section {
+            background: var(--gradient);
+            color: var(--light-color);
+            padding: 3rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .ctf-notice {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+        }
+
+        .disclaimer {
+            background-color: var(--light-color);
+            color: var(--text-light);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--accent-color);
+            background-color: #fef3c7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>EliteRecrut</h1>
+            <p>Recrutement exclusif pour les talents d'exception</p>
+            <a href="#" class="btn btn-primary">Postuler maintenant</a>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Offres d'emploi</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="disclaimer">
+            <i class="fas fa-exclamation-circle"></i> EliteRecrut sélectionne les meilleurs profils pour des postes exigeants. Nos critères sont stricts et non négociables.
+        </div>
+
+        <section class="stats">
+            <div class="stat">
+                <h3>98%</h3>
+                <p>Taux de satisfaction client</p>
+            </div>
+            <div class="stat">
+                <h3>500+</h3>
+                <p>Entreprises partenaires</p>
+            </div>
+            <div class="stat">
+                <h3>10 000+</h3>
+                <p>Candidats sélectionnés</p>
+            </div>
+            <div class="stat">
+                <h3>24h</h3>
+                <p>Réponse garantie sous 24h</p>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Pourquoi choisir EliteRecrut ?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Sélection rigoureuse</h3>
+                    <p>Nous ne retenons que les profils les plus qualifiés et adaptés à vos besoins.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Accès à des postes exclusifs</h3>
+                    <p>Des offres d'emploi réservées à une élite, non disponibles sur les plateformes classiques.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Confidentialité absolue</h3>
+                    <p>Vos informations et vos recherches restent strictement confidentielles.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="jobs">
+            <h2>Nos offres d'emploi exclusives</h2>
+            <div class="jobs-grid">
+                <div class="job-card">
+                    <h3>Développeur Senior (H/F)</h3>
+                    <p>Recherchons un développeur expérimenté, diplômé d'une école d'ingénieurs du top 5.</p>
+                    <p class="salary">Salaire : 60 000 € – 80 000 €</p>
+                    <a href="#" class="btn btn-primary">Postuler</a>
+                </div>
+                <div class="job-card">
+                    <h3>Chef de Projet (H/F)</h3>
+                    <p>Poste réservé aux candidats ayant une expérience minimale de 10 ans dans des entreprises du CAC 40.</p>
+                    <p class="salary">Salaire : 70 000 € – 90 000 €</p>
+                    <a href="#" class="btn btn-primary">Postuler</a>
+                </div>
+                <div class="job-card">
+                    <h3>Analyste Financier (H/F)</h3>
+                    <p>Exclusivement pour les diplômés de HEC, ESSEC ou ESCP. Expérience en banque d'investissement requise.</p>
+                    <p class="salary">Salaire : 80 000 € – 120 000 €</p>
+                    <a href="#" class="btn btn-primary">Postuler</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Témoignages de nos clients et candidats</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"Grâce à EliteRecrut, j'ai trouvé un poste à la hauteur de mes compétences et de mes attentes. Leur sélection est vraiment exigeante, ce qui garantit la qualité des offres."</p>
+                    <div class="testimonial-author">- Jean, 35 ans, ancien de Polytechnique</div>
+                </div>
+                <div class="testimonial">
+                    <p>"EliteRecrut nous a permis de recruter des talents exceptionnels, difficiles à trouver ailleurs. Leur approche est unique et très efficace."</p>
+                    <div class="testimonial-author">- Sophie, DRH d'une entreprise du CAC 40</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Je recommande EliteRecrut à tous ceux qui cherchent des opportunités haut de gamme. Leur réseau est impressionnant."</p>
+                    <div class="testimonial-author">- Marc, 40 ans, diplômé de HEC</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Rejoignez l'élite avec EliteRecrut</h2>
+            <p>Postulez dès maintenant pour accéder à des offres d'emploi réservées aux meilleurs profils.</p>
+            <a href="#" class="btn btn-secondary">Créer mon profil</a>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EliteRecrut</h3>
+                    <p>EliteRecrut est un cabinet de recrutement spécialisé dans la sélection des talents d'exception pour des postes exigeants.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#">Offres d'emploi</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Avenue des Talents, Paris, France</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@eliterecrut.fr</p>
+                </div>
+            </div>
+
+            <div class="ctf-notice">
+                <p>Site fictif utilisé dans le cadre d'un CTF d'OSINT</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

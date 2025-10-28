@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustPhish - Solutions de sécurité avancées</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00ffaa;
+            --secondary-color: #ff00aa;
+            --dark-bg: #080808;
+            --darker-bg: #050505;
+            --section-bg: #111111;
+            --text-color: #e0e0e0;
+            --highlight: #00ffaa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--darker-bg);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 255, 170, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-text {
+            color: var(--primary-color);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-left: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 16px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(8,8,8,0.97) 0%, rgba(5,5,5,0.9) 100%);
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1920/1080') center/cover no-repeat;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #bbb;
+        }
+        
+        .hero span {
+            color: var(--primary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--primary-color);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: #000;
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--darker-bg);
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .section-title p {
+            color: #bbb;
+            font-size: 1.1rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--section-bg);
+            border-radius: 8px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #222;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,255,170,0.1);
+            border-color: var(--highlight);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .service-card p {
+            color: #aaa;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .service-price {
+            font-size: 1.2rem;
+            color: var(--highlight);
+            margin-top: auto;
+            font-weight: bold;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+        }
+        
+        .features-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .features-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 30px;
+        }
+        
+        .features-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .features-text p {
+            margin-bottom: 30px;
+            color: #bbb;
+        }
+        
+        .feature-list {
+            margin-bottom: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .features-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .features-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--darker-bg);
+            padding: 100px 0;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: var(--section-bg);
+            border-radius: 8px;
+            padding: 30px;
+            border: 1px solid #222;
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #bbb;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+        
+        .client-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .client-details p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+        }
+        
+        .contact-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #bbb;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-details p {
+            margin: 0;
+            color: #bbb;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-column p {
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .social-links li {
+            margin-right: 15px;
+        }
+        
+        .social-links a {
+            color: #bbb;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom-invisible {
+            color: #080808;
+        }
+        
+        /* Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Terminal Effect */
+        .terminal {
+            background-color: #0c0c0c;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .terminal-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .terminal-btn.red { background-color: #ff5f56; }
+        .terminal-btn.yellow { background-color: #ffbd2e; }
+        .terminal-btn.green { background-color: #27c93f; }
+        
+        .terminal-title {
+            color: #666;
+            font-size: 14px;
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .terminal-content {
+            color: var(--primary-color);
+            line-height: 1.5;
+        }
+        
+        .terminal-line {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .terminal-prompt::before {
+            content: "$ ";
+            color: var(--secondary-color);
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: var(--primary-color);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        .disclaimer {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 1px solid #222;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid, .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-text, .features-image, .contact-form, .contact-info {
+                flex: 100%;
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-fish logo-icon"></i> <!-- MAJ 15/01/2025 : @20centimes doit demander le bon logo -->
+                <span class="logo-text">TRUSTPHISH</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#features">Pourquoi nous</a></li>
+                    <li><a href="#testimonials">Témoignages</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://stockage-en-ligne.trustphish.com/"><i class="fas fa-cloud"></i> Cloud Drive</a></li> <!-- MAJ 17/04/2025 : Le client a demandé à @20centimes de retirer le lien -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Solutions <span>discrètes</span> pour votre avantage en ligne</h1>
+            <p>Trustphish offre des services d'accès à l'information non
+ conventionnels pour ceux qui cherchent un avantage dans un monde 
+numérique concurrentiel. Nos services sont fournis avec une garantie 
+totale d'anonymat et de discrétion.</p>
+            <a href="#services" class="btn">Découvrir nos services</a>
+            <a href="#contact" class="btn btn-outline">Nous contacter</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Services</h2>
+                <p>Des solutions sur mesure pour tous vos besoins d'accès à l'information</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-laptop-code service-icon"></i>
+                    <h3>Accès Avancé</h3>
+                    <p>Nos experts peuvent vous offrir un accès à des 
+systèmes sécurisés pour récupérer des informations stratégiques. 
+Solutions discrètes avec garantie de non-traçabilité.</p>
+                    <div class="service-price">À partir de 500€</div>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-id-card service-icon"></i>
+                    <h3>Alternatives d'Identité</h3>
+                    <p>Besoin d'une nouvelle identité numérique ou 
+physique? Nos solutions vous permettent d'opérer sous une identité 
+totalement vérifiable et sécurisée.</p>
+                    <div class="service-price">À partir de 800€</div>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-database service-icon"></i>
+                    <h3>Marketplace de Données</h3>
+                    <p>Accédez à notre marketplace exclusive où vous 
+pourrez acquérir des informations sensibles, des données financières et 
+des ressources numériques de grande valeur.</p>
+                    <div class="service-price">Accès VIP sur demande</div>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-passport service-icon"></i>
+                    <h3>Documents Premium</h3>
+                    <p>Documents officiels de haute qualité 
+indétectables par les systèmes de vérification standards. Idéal pour 
+voyager ou établir une nouvelle identité.</p>
+                    <div class="service-price">À partir de 1500€</div>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-key service-icon"></i>
+                    <h3>Récupération de Comptes</h3>
+                    <p>Nous vous aidons à récupérer l'accès à des 
+comptes en ligne de valeur. Notre équipe utilise des techniques avancées
+ pour garantir un accès rapide et discret.</p>
+                    <div class="service-price">À partir de 300€</div>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-lock service-icon"></i>
+                    <h3>Intelligence Concurrentielle</h3>
+                    <p>Obtenez un avantage stratégique sur vos 
+concurrents grâce à nos services d'intelligence économique. Accédez à 
+des secrets industriels et des stratégies confidentielles.</p>
+                    <div class="service-price">Sur devis</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="features-content">
+                <div class="features-text">
+                    <h2>Pourquoi choisir <span style="color: var(--primary-color);">Trustphish</span>?</h2>
+                    <p>Depuis plus de 8 ans, nous offrons des services 
+d'élite à une clientèle exigeante. Notre engagement envers la discrétion
+ et la qualité nous a valu une réputation inégalée dans notre domaine.</p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt feature-icon"></i>
+                            <div>
+                                <h4>Anonymat total</h4>
+                                <p>Toutes nos transactions sont protégées par des protocoles avancés garantissant votre anonymat absolu.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-users feature-icon"></i>
+                            <div>
+                                <h4>Experts de haut niveau</h4>
+                                <p>Notre équipe se compose d'anciens professionnels de la sécurité informatique et du renseignement.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            <div>
+                                <h4>Garantie de résultats</h4>
+                                <p>Nous offrons une garantie de remboursement si nous ne parvenons pas à livrer le service promis.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn">Contactez-nous</a>
+                </div>
+                <div class="features-image">
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-btn red"></div>
+                            <div class="terminal-btn yellow"></div>
+                            <div class="terminal-btn green"></div>
+                            <div class="terminal-title">trustphish_secure_shell</div>
+                        </div>
+                        <div class="terminal-content">
+                            <span class="terminal-line terminal-prompt" style="opacity: 1;">connecting to secure server...</span>
+                            <span class="terminal-line" style="opacity: 1;">Establishing encrypted connection...</span>
+                            <span class="terminal-line" style="opacity: 1;">Connection secured via TOR+VPN tunnel</span>
+                            <span class="terminal-line" style="opacity: 1;">****************************************</span>
+                            <span class="terminal-line" style="opacity: 1;">Welcome to TrustPhish Secure Environment</span>
+                            <span class="terminal-line" style="opacity: 1;">User authentication: SUCCESSFUL</span>
+                            <span class="terminal-line" style="opacity: 1;">Security level: MAXIMUM</span>
+                            <span class="terminal-line" style="opacity: 1;">****************************************</span>
+                            <span class="terminal-line terminal-prompt" style="opacity: 1;">access marketplace<span class="cursor"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Témoignages clients</h2>
+                <p>Ce que disent nos clients satisfaits</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"J'avais besoin d'accéder à des informations sur 
+un concurrent pour une affaire importante. Trustphish m'a fourni 
+exactement ce dont j'avais besoin en moins de 48 heures. Service 
+impeccable."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h4>Alex M.</h4>
+                            <p>Entrepreneur</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"La qualité des documents fournis est 
+exceptionnelle. Impossible de les distinguer des originaux. Très 
+impressionné par le professionnalisme et la rapidité du service."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h4>S.K.</h4>
+                            <p>Client international</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Après avoir perdu l'accès à mes comptes en ligne
+ suite à une attaque, Trustphish m'a aidé à tout récupérer. Le service 
+client a été exceptionnel et discret."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="client-details">
+                            <h4>Marina D.</h4>
+                            <p>Professionnelle</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nous contacter</h2>
+                <p>Toutes les communications sont entièrement cryptées et anonymes</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nom de code</label>
+                            <input type="text" id="name" class="form-control" placeholder="Votre pseudonyme">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email sécurisé</label>
+                            <input type="email" id="email" class="form-control" placeholder="Adresse email non traçable">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service requis</label>
+                            <select id="service" class="form-control">
+                                <option value="" selected="selected">Sélectionnez un service</option>
+                                <option value="access">Accès Avancé</option>
+                                <option value="identity">Alternatives d'Identité</option>
+                                <option value="data">Marketplace de Données</option>
+                                <option value="documents">Documents Premium</option>
+                                <option value="accounts">Récupération de Comptes</option>
+                                <option value="intelligence">Intelligence Concurrentielle</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Détails (cryptés)</label>
+                            <textarea id="message" class="form-control" rows="5" placeholder="Décrivez votre besoin spécifique..."></textarea>
+                        </div>
+                        <button type="submit" class="btn">Envoyer demande sécurisée</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Canaux de communication sécurisés</h3>
+                    <p>Pour une sécurité maximale, nous recommandons d'utiliser l'un des canaux suivants:</p>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <div class="contact-details">
+                            <h4>Email sécurisé</h4>
+                            <p>contact@trustphi.sh</p> <!-- MAJ 15/01/2025 : @20centimes doit confirmer avec le client que le domaine est correct -->
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-telegram contact-icon"></i>
+                        <div class="contact-details">
+                            <h4>Réseaux sociaux</h4>
+                            <!-- <p>@TrustphishSecure</p>  --> <!-- MAJ 12/01/2025 : @20centimes doit demander au client si le canal Telegram est créé -->
+                            <p><a href="https://bsky.app/profile/catimini98160.bsky.social">@catimini98160 (BlueSky)</a></p> <!-- MAJ 19/01/2025 : Demande du client de retirer ce lien -->
+                            <p><a href="https://x.com/catimini98160">@catimini98160 (X)</a></p> <!-- MAJ 19/01/2025 : Demande du client de retirer ce lien -->
+                        </div>
+                    </div>
+                    <!-- MAJ 21/01/2025 : Réunion de @20centimes avec le client : retirer cette méthode de contact -->
+                    <div class="contact-item">
+                        <i class="fas fa-globe contact-icon"></i>
+                        <div class="contact-details">
+                            <h4>Site Tor (Onion)</h4>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-bitcoin contact-icon"></i>
+                        <div class="contact-details">
+                            <h4>Paiement sécurisé</h4>
+                            <p>Nous acceptons uniquement les cryptomonnaies (BTC, XMR, ETH)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TrustPhish</h3>
+                    <p>Services de sécurité et d'accès à l'information 
+avancés pour clients exigeants. Nous opérons avec discrétion absolue 
+depuis 2015.</p>
+                    <ul class="social-links">
+                        <li><a href="#"><i class="fab fa-telegram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-bitcoin"></i></a></li>
+                        <li><a href="#"><i class="fab fa-ethereum"></i></a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Accès Avancé</a></li>
+                        <li><a href="#services">Alternatives d'Identité</a></li>
+                        <li><a href="#services">Marketplace de Données</a></li>
+                        <li><a href="#services">Documents Premium</a></li>
+                        <li><a href="#services">Récupération de Comptes</a></li>
+                        <li><a href="https://stockage-en-ligne.trustphish.com/"><i class="fas fa-cloud"></i> Cloud Drive</a></li> <!-- MAJ 17/04/2025 : Le client a demandé à @20centimes de retirer le lien -->
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Ressources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Guide de sécurité</a></li>
+                        <li><a href="#">Accès VPN</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Témoignages</a></li>
+                        <li><a href="#">Conditions d'utilisation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Sécurisé</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Email Chiffré</a></li>
+                        <li><a href="#">Messagerie Sécurisée</a></li>
+                        <li><a href="#">Support Technique</a></li>
+                        <li><a href="#">Rapport d'Incident</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="disclaimer">
+                Ce site a été conçu dans le cadre d'une compétition 
+d'Open Source Intelligence (OSINT). Toute ressemblance avec des 
+personnes, des événements ou des organisations réelles est purement 
+fortuite. Les données et les scénarios présentés ici sont fictifs et 
+destinés uniquement à des fins d'apprentissage et de compétition.
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 TrustPhish. Tous droits réservés.</p>
+            </div>
+            <div class="footer-bottom footer-bottom-invisible">
+                <p>Site créé par l'équipe de @20centimes</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Optionnel : Ajouter des animations ou des effets interactifs
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation pour les éléments du terminal
+            let terminalLines = document.querySelectorAll('.terminal-line');
+            terminalLines.forEach((line, index) => {
+                setTimeout(() => {
+                    line.style.opacity = '1';
+                }, index * 300);
+            });
+            
+            // Smooth scrolling pour les liens d'ancrage
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>

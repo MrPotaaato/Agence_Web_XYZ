@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoPeak – Trading de Cryptomonnaies à Haut Rendement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #f8fafc;
+            --accent-color: #3b82f6;
+            --accent-dark: #1d4ed8;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-color: #1f2937;
+            --light-color: #ffffff;
+            --dark-color: #111827;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --gradient: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--gradient);
+            color: var(--light-color);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .stat {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat p {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .features {
+            margin: 4rem 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .testimonials {
+            background-color: var(--secondary-color);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .cta-section {
+            background: var(--gradient);
+            color: var(--light-color);
+            padding: 4rem 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .social-icons a {
+            color: var(--light-color);
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        .ctf-notice {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+        }
+
+        .disclaimer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .chart-placeholder {
+            background-color: var(--light-color);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            text-align: center;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>CryptoPeak</h1>
+            <p>Le trading de cryptomonnaies n'a jamais été aussi simple et rentable</p>
+            <a href="#" class="btn btn-primary">Commencer à trader maintenant</a>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Nos Services</a></li>
+            <li><a href="#">Tarifs</a></li>
+            <li><a href="#">Témoignages</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="disclaimer">
+            <i class="fas fa-exclamation-triangle"></i> Le trading de cryptomonnaies comporte des risques. Nos résultats passés ne garantissent pas des performances futures.
+        </div>
+
+        <section class="stats">
+            <div class="stat">
+                <h3>+120%</h3>
+                <p>Rendement moyen annuel</p>
+            </div>
+            <div class="stat">
+                <h3>5000+</h3>
+                <p>Clients satisfaits</p>
+            </div>
+            <div class="stat">
+                <h3>24/7</h3>
+                <p>Support disponible</p>
+            </div>
+            <div class="stat">
+                <h3>$10M+</h3>
+                <p>Volume échangé</p>
+            </div>
+        </section>
+
+        <section class="chart-placeholder">
+            <h3>Performance de notre portefeuille phare</h3>
+            <p>(Graphique simulé – résultats fictifs)</p>
+            <img src="https://via.placeholder.com/800x400?text=Graphique+de+performance+2023-2024" alt="Graphique de performance" style="width: 100%; max-width: 800px; margin: 1rem 0;">
+            <p style="font-size: 0.9rem; color: #666;">*Les performances passées ne préjugent pas des résultats futurs.</p>
+        </section>
+
+        <section class="features">
+            <h2>Pourquoi choisir CryptoPeak ?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Stratégies gagnantes</h3>
+                    <p>Nos experts analysent le marché 24/7 pour vous proposer les meilleures opportunités de trading.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Sécurité maximale</h3>
+                    <p>Vos fonds sont protégés par les dernières technologies de cryptographie et de stockage à froid.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-headset"></i>
+                    <h3>Support réactif</h3>
+                    <p>Notre équipe est disponible 24/7 pour répondre à toutes vos questions et vous accompagner.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-percent"></i>
+                    <h3>Frais réduits</h3>
+                    <p>Profitez des frais de trading les plus bas du marché pour maximiser vos profits.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Plateforme intuitive</h3>
+                    <p>Tradez depuis votre ordinateur ou votre mobile avec notre interface simple et puissante.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-gift"></i>
+                    <h3>Bonus exclusifs</h3>
+                    <p>Bénéficiez de bonus de bienvenue et de promotions spéciales pour booster vos gains.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Ce que nos clients disent de nous</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"Grâce à CryptoPeak, j'ai multiplié mon investissement par 5 en seulement 3 mois ! Leur équipe est incroyable et toujours disponible pour conseiller."</p>
+                    <div class="testimonial-author">- Jean, Paris</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Je débutais dans le trading et CryptoPeak m'a guidé pas à pas. Aujourd'hui, je réalise des profits réguliers sans stress."</p>
+                    <div class="testimonial-author">- Sophie, Lyon</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Leur signal de trading sur le Bitcoin a été parfait. J'ai réalisé +200% en une semaine ! Je recommande à 100%."</p>
+                    <div class="testimonial-author">- Marc, Marseille</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Prêt à transformer votre avenir financier ?</h2>
+            <p>Rejoignez des milliers de traders satisfaits et commencez à générer des profits dès aujourd'hui.</p>
+            <a href="#" class="btn btn-secondary">Ouvrir un compte gratuit</a>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CryptoPeak</h3>
+                    <p>CryptoPeak est une plateforme de trading de cryptomonnaies innovante, offrant des outils puissants pour maximiser vos profits.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#">Nos Services</a></li>
+                        <li><a href="#">Tarifs</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Centre d'aide</a></li>
+                        <li><a href="#">Contactez-nous</a></li>
+                        <li><a href="#">Sécurité</a></li>
+                        <li><a href="#">Conditions générales</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Finance, Paris, France</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> support@cryptopeak.fr</p>
+                </div>
+            </div>
+
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+
+            <div class="ctf-notice">
+                <p>Site fictif utilisé dans le cadre d'un CTF d'OSINT</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VapeFun – L'Univers du Vaping et des Saveurs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #ecf0f1;
+            --accent-color: #e74c3c;
+            --accent-light: #f1c40f;
+            --text-color: #333;
+            --light-color: #ffffff;
+            --dark-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: var(--light-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--light-color);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--dark-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+        }
+
+        .btn-accent:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .product-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-card-content {
+            padding: 1.5rem;
+        }
+
+        .product-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .product-card .price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .product-card p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .flavors {
+            background-color: var(--light-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .flavors h2 {
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .flavor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .flavor {
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .flavor:hover {
+            transform: scale(1.05);
+        }
+
+        .flavor i {
+            font-size: 2rem;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+        }
+
+        .testimonials {
+            background-color: var(--secondary-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin: 1rem;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-light);
+            border-bottom: 1px solid var(--accent-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-light);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .social-icons a {
+            color: var(--light-color);
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-light);
+        }
+
+        .ctf-notice {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 1.5rem;
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+        }
+
+        .age-warning {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VapeFun</h1>
+        <p>Découvrez nos e-liquides et kits de vaping pour une expérience unique</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">E-Liquides</a></li>
+            <li><a href="#">Kits de Vaping</a></li>
+            <li><a href="#">Accessoires</a></li>
+            <li><a href="#">Promotions</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="age-warning">
+            <i class="fas fa-exclamation-triangle"></i> Vous devez avoir 18 ans ou plus pour visiter ce site.
+        </div>
+
+        <section class="hero">
+            <h1>Des saveurs incroyables, une expérience unique</h1>
+            <p>Découvrez nos e-liquides et kits de vaping pour tous les goûts. Livraison rapide et discrète.</p>
+            <a href="#" class="btn btn-primary">Voir nos produits</a>
+        </section>
+
+        <section class="products">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x250?text=E-Liquide+Fraise" alt="E-Liquide Fraise">
+                <div class="product-card-content">
+                    <h3>E-Liquide Fraise</h3>
+                    <p class="price">12,99 €</p>
+                    <p>Un mélange sucré et fruité pour une expérience de vaping rafraîchissante.</p>
+                    <a href="#" class="btn btn-accent">Acheter maintenant</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x250?text=Kit+Débutant" alt="Kit Débutant">
+                <div class="product-card-content">
+                    <h3>Kit Débutant</h3>
+                    <p class="price">39,99 €</p>
+                    <p>Parfait pour commencer le vaping. Facile à utiliser et élégant.</p>
+                    <a href="#" class="btn btn-accent">Acheter maintenant</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x250?text=E-Liquide+Menthe" alt="E-Liquide Menthe">
+                <div class="product-card-content">
+                    <h3>E-Liquide Menthe</h3>
+                    <p class="price">12,99 €</p>
+                    <p>Une fraîcheur intense pour une sensation de pureté à chaque bouffée.</p>
+                    <a href="#" class="btn btn-accent">Acheter maintenant</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="flavors">
+            <h2>Nos saveurs populaires</h2>
+            <div class="flavor-grid">
+                <div class="flavor">
+                    <i class="fas fa-apple-alt"></i>
+                    <h3>Pomme</h3>
+                </div>
+                <div class="flavor">
+                    <i class="fas fa-lemon"></i>
+                    <h3>Citron</h3>
+                </div>
+                <div class="flavor">
+                    <i class="fas fa-pepper-hot"></i>
+                    <h3>Fraise</h3>
+                </div>
+                <div class="flavor">
+                    <i class="fas fa-ice-cream"></i>
+                    <h3>Vanille</h3>
+                </div>
+                <div class="flavor">
+                    <i class="fas fa-cookie-bite"></i>
+                    <h3>Cookie</h3>
+                </div>
+                <div class="flavor">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Café</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Ce que nos clients disent de nous</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"J'adore les e-liquides de VapeFun ! Les saveurs sont incroyables et la livraison est ultra-rapide."</p>
+                    <div class="testimonial-author">- Lucas, 19 ans</div>
+                </div>
+
+                <div class="testimonial">
+                    <p>"Le kit débutant est parfait pour moi. Facile à utiliser et très stylé. Je le recommande !"</p>
+                    <div class="testimonial-author">- Emma, 18 ans</div>
+                </div>
+
+                <div class="testimonial">
+                    <p>"Les saveurs fruitées sont mes préférées. Je ne peux plus m'en passer !"</p>
+                    <div class="testimonial-author">- Thomas, 20 ans</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>À propos de VapeFun</h3>
+                <p>VapeFun est votre destination pour des produits de vaping de qualité. Nous proposons une large gamme d'e-liquides et de kits pour tous les goûts.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Liens utiles</h3>
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Produits</a></li>
+                    <li><a href="#">Promotions</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contactez-nous</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue du Vaping, Paris, France</p>
+                <p><i class="fas fa-phone"></i> +33 6 12 34 56 78</p>
+                <p><i class="fas fa-envelope"></i> contact@vapefun.fr</p>
+            </div>
+        </div>
+
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+
+        <div class="ctf-notice">
+            <p>Site fictif utilisé dans le cadre d'un CTF d'OSINT</p>
+        </div>
+    </footer>
+</body>
+</html>

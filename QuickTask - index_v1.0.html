@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickTask – Gagnez de l'argent facilement avec des micro-tâches</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f8fafc;
+            --accent-color: #10b981;
+            --accent-dark: #059669;
+            --warning-color: #f59e0b;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --light-color: #ffffff;
+            --dark-color: #111827;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border: 1px solid #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #1d4ed8);
+            color: var(--light-color);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+            color: var(--light-color);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 2rem;
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat p {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .features {
+            margin: 4rem 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .tasks {
+            margin: 4rem 0;
+        }
+
+        .tasks h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .task-card {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .task-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .task-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .task-card .price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin: 1rem 0;
+        }
+
+        .testimonials {
+            background-color: var(--secondary-color);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), #1d4ed8);
+            color: var(--light-color);
+            padding: 3rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .ctf-notice {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+        }
+
+        .disclaimer {
+            background-color: var(--light-color);
+            color: var(--text-light);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--warning-color);
+            background-color: #fef3c7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>QuickTask</h1>
+            <p>Gagnez de l'argent rapidement avec des micro-tâches simples et accessibles</p>
+            <a href="#" class="btn btn-primary">Commencer maintenant</a>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Tâches disponibles</a></li>
+            <li><a href="#">Tarifs</a></li>
+            <li><a href="#">Comment ça marche</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="disclaimer">
+            <i class="fas fa-exclamation-circle"></i> QuickTask permet à chacun de gagner un complément de revenu en réalisant des tâches simples. Les gains dépendent de votre productivité.
+        </div>
+
+        <section class="stats">
+            <div class="stat">
+                <h3>10 000+</h3>
+                <p>Utilisateurs actifs</p>
+            </div>
+            <div class="stat">
+                <h3>500 000+</h3>
+                <p>Tâches complétées</p>
+            </div>
+            <div class="stat">
+                <h3>24/7</h3>
+                <p>Disponibilité des tâches</p>
+            </div>
+            <div class="stat">
+                <h3>100+</h3>
+                <p>Types de tâches différentes</p>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Pourquoi choisir QuickTask ?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <i class="fas fa-clock"></i>
+                    <h3>Flexibilité totale</h3>
+                    <p>Travaillez quand vous voulez, où vous voulez. Pas d'horaires imposés.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>Paiements rapides</h3>
+                    <p>Retirez vos gains instantanément dès que vous atteignez le seuil minimum.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Tâches variées</h3>
+                    <p>Des centaines de tâches simples et rapides à réaliser en quelques clics.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tasks">
+            <h2>Exemples de tâches disponibles</h2>
+            <div class="tasks-grid">
+                <div class="task-card">
+                    <h3>Saisie de données</h3>
+                    <p>Saisissez des informations depuis des images ou des documents.</p>
+                    <p class="price">0,05 € par tâche</p>
+                    <a href="#" class="btn btn-primary">Voir les détails</a>
+                </div>
+                <div class="task-card">
+                    <h3>Modération de contenu</h3>
+                    <p>Identifiez et classez du contenu en ligne selon des critères précis.</p>
+                    <p class="price">0,08 € par tâche</p>
+                    <a href="#" class="btn btn-primary">Voir les détails</a>
+                </div>
+                <div class="task-card">
+                    <h3>Transcription audio</h3>
+                    <p>Transcrivez des extraits audio en texte.</p>
+                    <p class="price">0,03 € par minute</p>
+                    <a href="#" class="btn btn-primary">Voir les détails</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Témoignages de nos utilisateurs</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"QuickTask m'a permis de gagner un peu d'argent supplémentaire pendant mes études. C'est simple et flexible !"</p>
+                    <div class="testimonial-author">- Marie, 21 ans</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Je peux travailler depuis chez moi et choisir mes horaires. Parfait pour compléter mes revenus."</p>
+                    <div class="testimonial-author">- Thomas, 28 ans</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Les tâches sont faciles et les paiements sont rapides. Je recommande QuickTask à tous ceux qui veulent gagner de l'argent en ligne."</p>
+                    <div class="testimonial-author">- Sophie, 19 ans</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Prêt à gagner de l'argent dès aujourd'hui ?</h2>
+            <p>Inscrivez-vous gratuitement et commencez à réaliser des tâches rémunérées en quelques minutes.</p>
+            <a href="#" class="btn btn-secondary">S'inscrire maintenant</a>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>QuickTask</h3>
+                    <p>QuickTask est une plateforme permettant à chacun de gagner de l'argent en réalisant des micro-tâches simples et accessibles.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#">Tâches disponibles</a></li>
+                        <li><a href="#">Tarifs</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue des Micro-Tâches, Paris, France</p>
+                    <p><i class="fas fa-envelope"></i> contact@quicktask.fr</p>
+                </div>
+            </div>
+
+            <div class="ctf-notice">
+                <p>Site fictif utilisé dans le cadre d'un CTF d'OSINT</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaturaVita – Solutions Naturelles pour une Vie Meilleure</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2E7D32;
+            --accent-color: #81C784;
+            --text-color: #333;
+            --light-color: #f9f9f9;
+            --dark-color: #212121;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            padding: 3rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--dark-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-card-content {
+            padding: 1.5rem;
+        }
+
+        .product-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .product-card p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .testimonials {
+            background-color: var(--light-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin: 1rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        .ctf-notice {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NaturaVita</h1>
+        <p>Des solutions naturelles pour une vie plus saine et plus heureuse</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Nos Produits</a></li>
+            <li><a href="#">Témoignages</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Découvrez nos produits révolutionnaires</h1>
+            <p>Améliorez votre santé et votre bien-être avec nos compléments naturels, testés et approuvés par des milliers de clients satisfaits.</p>
+            <a href="#" class="btn">Découvrir nos produits</a>
+        </section>
+
+        <section class="products">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200?text=Detox+Total" alt="Detox Total">
+                <div class="product-card-content">
+                    <h3>Detox Total</h3>
+                    <p>Éliminez les toxines et retrouvez votre énergie en seulement 7 jours. 100% naturel et sans effets secondaires.</p>
+                    <a href="#" class="btn">Acheter maintenant</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200?text=Minceur+Express" alt="Minceur Express">
+                <div class="product-card-content">
+                    <h3>Minceur Express</h3>
+                    <p>Perdez jusqu'à 5 kg en un mois sans effort. Notre formule exclusive brûle les graisses 24h/24.</p>
+                    <a href="#" class="btn">Acheter maintenant</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200?text=Immuno+Boost" alt="Immuno Boost">
+                <div class="product-card-content">
+                    <h3>Immuno Boost</h3>
+                    <p>Renforcez votre système immunitaire et dites adieu aux maladies. Efficace à 100% selon nos tests internes.</p>
+                    <a href="#" class="btn">Acheter maintenant</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Ce que nos clients disent de nous</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"Grâce à Detox Total, j'ai retrouvé une énergie que je n'avais plus depuis des années. Je recommande à 100% !"</p>
+                    <div class="testimonial-author">- Marie L., Paris</div>
+                </div>
+
+                <div class="testimonial">
+                    <p>"Minceur Express a changé ma vie. J'ai perdu 7 kg en un mois sans régime strict. Merci NaturaVita !"</p>
+                    <div class="testimonial-author">- Jean P., Lyon</div>
+                </div>
+
+                <div class="testimonial">
+                    <p>"Immuno Boost m'a sauvé cet hiver. Plus une seule maladie depuis que je prends ce complément. Incroyable !"</p>
+                    <div class="testimonial-author">- Sophie M., Marseille</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>À propos</h3>
+                <p>NaturaVita est votre partenaire santé naturel. Nous proposons des produits innovants pour améliorer votre bien-être au quotidien.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Produits</a></li>
+                    <li><a href="#">Témoignages</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contactez-nous</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Santé, Paris, France</p>
+                <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                <p><i class="fas fa-envelope"></i> contact@naturavita.fr</p>
+            </div>
+        </div>
+
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <div class="ctf-notice">
+            <p>Site fictif utilisé dans le cadre d'un CTF d'OSINT</p>
+        </div>
+    </footer>
+</body>
+</html>
