@@ -317,17 +317,52 @@
         }
     </style>
     <script>
-        // API Configuration for internal services
-        const API_CONFIG = {
-            endpoint: 'https://site-pour-de-faux.swagger.io/',
-            token: '766F7573-2061-7665-7A20-74726F7576E9',
-            version: 'v1.0'
-        };
+        // API Configuration loaded from external file
+        let API_CONFIG = null;
+
+        // Load configuration from file
+        async function loadConfig() {
+            try {
+                const response = await fetch('configuration.cfg');
+                const configText = await response.text();
+                
+                // Parse configuration file
+                API_CONFIG = parseConfig(configText);
+                console.log('Configuration loaded successfully');
+                return API_CONFIG;
+            } catch (error) {
+                console.error('Failed to load configuration:', error);
+                return null;
+            }
+        }
+
+        // Parse .cfg file format
+        function parseConfig(text) {
+            const config = {};
+            const lines = text.split('\n');
+            
+            lines.forEach(line => {
+                line = line.trim();
+                if (line && !line.startsWith('#') && !line.startsWith(';')) {
+                    const [key, value] = line.split('=').map(s => s.trim());
+                    if (key && value) {
+                        config[key] = value;
+                    }
+                }
+            });
+            
+            return config;
+        }
 
         // Initialize API connection
-        function initAPIConnection() {
-            // Connection logic would go here
-            console.log('API Ready');
+        async function initAPIConnection() {
+            const config = await loadConfig();
+            if (config && config.endpoint && config.token) {
+                console.log('API Ready');
+                // Connection logic would go here
+            } else {
+                console.error('Invalid configuration');
+            }
         }
 
         document.addEventListener('DOMContentLoaded', initAPIConnection);
